@@ -1,0 +1,77 @@
+# ============================================
+# Agent Backend .gitignore
+# ============================================
+
+# ==================== CRITICAL: API KEYS ====================
+# NEVER commit these files
+.env
+.env.local
+.env.development
+.env.production
+*.key
+*.secret
+secrets.json
+api_keys.txt
+
+# ==================== Python ====================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.Python
+
+# UV package manager
+.uv/
+uv.lock
+
+# Distribution
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Testing
+.pytest_cache/
+.coverage
+.hypothesis/
+htmlcov/
+coverage.xml
+*.cover
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Ruff
+.ruff_cache/
+
+# Logs
+*.log
+logs/
+
+# ==================== LangSmith / LangChain ====================
+.langsmith/
+langsmith_cache/
+.langchain/
+traces/
+
+# ==================== User Data ====================
+# Test uploads during development
+uploads/
+temp/
+*.pdf
+*.docx
+*.doc
+
+# ==================== IDE ====================
+.vscode/
+.idea/
+*.swp
+*.swo

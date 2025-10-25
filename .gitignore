@@ -1,0 +1,223 @@
+# ============================================
+# Root .gitignore for Cold Email Agent Project
+# ============================================
+
+# ==================== SENSITIVE FILES ====================
+# CRITICAL: Never commit these files
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.cer
+*.crt
+secrets/
+config/secrets.json
+
+# ==================== Python ====================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.python-version
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+PIPFILE.lock
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.pytest_cache/
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# UV (Python package manager)
+.uv/
+uv.lock
+
+# ==================== Node.js / Frontend ====================
+# Dependencies
+node_modules/
+jspm_packages/
+
+# Next.js
+.next/
+out/
+build/
+.turbo/
+
+# Production
+/build
+/dist
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+
+# pnpm
+pnpm-lock.yaml
+.pnpm-store/
+
+# ==================== IDEs & Editors ====================
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains (PyCharm, WebStorm, etc.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# ==================== OS Files ====================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ==================== Databases ====================
+*.db
+*.sqlite
+*.sqlite3
+*.sql
+*.db-journal
+
+# ==================== Cloud & Deployment ====================
+# AWS
+.aws/
+*.pem
+
+# Google Cloud
+gcloud/
+
+# Docker
+.dockerignore
+
+# ==================== LangSmith / LangChain ====================
+.langsmith/
+langsmith_cache/
+.langchain/
+
+# ==================== Temporary Files ====================
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*.orig
+
+# ==================== AI / ML ====================
+# Model files (if storing locally)
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.pt
+*.pth
+*.onnx
+models/
+checkpoints/
+
+# ==================== User Uploads (POC) ====================
+# Don't commit test resumes/documents
+uploads/
+temp_uploads/
+*.pdf
+*.docx
+*.doc
+
+# ==================== Misc ====================
+.cache/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
