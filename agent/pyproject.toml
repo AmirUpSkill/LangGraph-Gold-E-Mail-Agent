@@ -1,0 +1,35 @@
+[project]
+name = "cold-email-agent"
+version = "0.1.0"
+description = "LangGraph-powered cold-email generator with multi-model branching & aggregation"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "AmirUpSkill", email = "amir@upskill.com" }]
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "python-multipart",
+    "pydantic",
+    "pydantic-settings",
+    "langchain",
+    "langgraph",
+    "langsmith",
+    "langchain-groq",
+    "langchain-google-genai",
+    "firecrawl-py",
+    "pypdf",
+    "python-docx",
+    "aiofiles",
+    "httpx",
+    "python-dotenv",
+    "rich>=14.2.0",
+]
+[tool.uv]
+dev-dependencies = [
+"pytest",
+"pytest-asyncio",
+"pytest-cov",
+"black",
+"ruff",
+]
+
