@@ -41,22 +41,23 @@ def _agent_node_impl(
     })
     # --- Compute duration --- 
     t1 = datetime.now()
-    duration_ms = (t1 - t0).total_seconds() * 1000 
+    duration_ms = int((t1 - t0).total_seconds() * 1000)
     draft_text = output.content.strip()
+    # --- Return the Response Schema For Eacb Agent --- 
     return {
         "agent_responses": [{
             "agent_name": agent_name,
-            "model": model_str,
-            "draft": draft_text,
-            "status": "complete",
-            "metadata": {
-                "word_count": len(draft_text.split()),
-                "generation_time_ms": duration_ms,
-                "temperature": llm.temperature
-            },
-            "ui_metadata": _ui_meta(agent_name)
-        }]
-    }
+                "model": model_str,
+                "draft": draft_text,
+                "status": "complete",
+                "metadata": {
+                    "word_count": len(draft_text.split()),
+                    "generation_time_ms": duration_ms,
+                    "temperature": llm.temperature
+                },
+                "ui_metadata": _ui_meta(agent_name)
+            }]
+        }
 
 # --- Define the First Node Agent ---
 def kimi_node(state: EmailState) -> dict:
@@ -70,22 +71,22 @@ def kimi_node(state: EmailState) -> dict:
     )
 # --- Define the Second Qwen Agent --- 
 def qwen_node(state: EmailState) -> dict:
-    # --- Use qwen/qwen-32b --- 
-    llm = build_groq_llm("qwen/qwen-32b",temperature=0.7)
+    # --- Use qwen/qwen3-32b --- 
+    llm = build_groq_llm("qwen/qwen3-32b",temperature=0.7)
     return _agent_node_impl(
         state,
         agent_name="qwen",
-        model_str="qwen/qwen-32b",
+        model_str="qwen/qwen3-32b",
         llm=llm,
     )
 # --- Define Open AI Oss Agent --- 
 def openai_oss_node(state: EmailState) -> dict:
-    # --- Use openai-oss/gpt-oos-120b --- 
-    llm = build_groq_llm("openai-oss/gpt-oos-120b",temperature=0.7)
+    # --- Use openai/gpt-oss-120b --- 
+    llm = build_groq_llm("openai/gpt-oss-120b",temperature=0.7)
     return _agent_node_impl(
         state,
-        agent_name="openai-oss",
-        model_str="openai-oss/gpt-oos-120b",
+        agent_name="openai_oss",
+        model_str="openai/gpt-oss-120b",
         llm=llm,
     )
 # --- Aggregator Node --- 
@@ -127,10 +128,10 @@ def aggregator_node(state: EmailState) -> dict:
     t1 = datetime.now()
 
     duration_ms = int((t1 - t0).total_seconds() * 1000)
-    final_text = output.content.strip()
+    final_text = output.content.strip() 
 
     # --- Parse structured output (if LLM returns JSON) ---
-    # If your prompt asks for JSON with final_email, reasoning, source_breakdown:
+    # --- This Step Done to Enrich the Ux to Add More Tracing in the Process --- 
     try:
         parsed = json.loads(final_text)
         final_email = parsed.get("final_email", final_text)
@@ -142,7 +143,7 @@ def aggregator_node(state: EmailState) -> dict:
             "closing": "openai_oss"
         })
     except json.JSONDecodeError:
-        # Fallback if LLM doesn't return JSON
+        # ---- Fallback if LLM doesn't return JSON ----
         final_email = final_text
         reasoning = "Combined best elements from all three drafts"
         source_breakdown = {
@@ -161,9 +162,9 @@ def aggregator_node(state: EmailState) -> dict:
 # --- Util Function --- 
 def _ui_meta(agent: str) -> dict:
     palette = {
-        "kimi": {"color": "#60A5FA", "position": "left", "emoji": "⚡"},
-        "qwen": {"color": "#34D399", "position": "center", "emoji": "🎯"},
-        "openai_oss": {"color": "#F472B6", "position": "right", "emoji": "🚀"}
+        "kimi": {"color": "#60A5FA", "position": "left", "emoji": "⚡️"},
+        "qwen": {"color": "#34D399", "position": "center", "emoji": "🔥"},
+        "openai_oss": {"color": "#F472B6", "position": "right", "emoji": "💫"}
     }
     return palette[agent]
 

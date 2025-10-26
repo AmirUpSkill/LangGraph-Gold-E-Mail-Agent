@@ -86,7 +86,7 @@ class AgentDraft(BaseModel):
         description="Status of draft generation"
     )
     metadata: AgentMetadata 
-    ui_metdata: UIMetadata 
+    ui_metadata: UIMetadata
 class AggregationResult(BaseModel):
     """
         Final Synthesized email form aggregator
@@ -105,7 +105,6 @@ class InputContext(BaseModel):
     job_metadata: JobMetadata = Field(..., description="Extracted job metadata")
 
 # --- Final Response Schema ---
-
 class EmailGenerationResponse(BaseModel):
     """
         Complete response for email generation request, matching the API contract.
@@ -118,7 +117,6 @@ class EmailGenerationResponse(BaseModel):
     agent_drafts: List[AgentDraft] = Field(..., min_items=3, max_items=3)
     aggregation: AggregationResult
 # --- Error Schemas ---
-
 class ErrorDetail(BaseModel):
     """ 
         Detailed error object for 500 responses
