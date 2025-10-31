@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.settings import get_settings
+from dotenv import load_dotenv
+
+load_dotenv()
 from app.api.endpoints import router as email_router
 
 # --- Initialization ---

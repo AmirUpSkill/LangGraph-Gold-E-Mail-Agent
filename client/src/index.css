@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 15% 8%;
+    --foreground: 210 20% 95%;
+
+    --card: 220 13% 12%;
+    --card-foreground: 210 20% 95%;
+
+    --popover: 220 13% 12%;
+    --popover-foreground: 210 20% 95%;
+
+    --primary: 200 80% 65%;
+    --primary-foreground: 220 15% 8%;
+    --primary-glow: 200 90% 75%;
+
+    --secondary: 220 12% 18%;
+    --secondary-foreground: 210 20% 95%;
+
+    --muted: 220 12% 18%;
+    --muted-foreground: 210 10% 65%;
+
+    --accent: 200 70% 60%;
+    --accent-foreground: 220 15% 8%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 20% 95%;
+
+    --border: 220 12% 22%;
+    --input: 220 12% 22%;
+    --ring: 200 80% 65%;
+
+    --radius: 1rem;
+
+    --agent-blue: 213 94% 68%;
+    --agent-pink: 330 81% 70%;
+    --agent-green: 158 64% 52%;
+
+    --grid-color: 220 12% 18%;
+    
+    --shadow-3d: 0 20px 60px -15px hsl(220 15% 0% / 0.8), 0 10px 40px -10px hsl(200 80% 65% / 0.15);
+    --shadow-card: 0 15px 40px -10px hsl(220 15% 0% / 0.6), 0 5px 20px -5px hsl(200 80% 65% / 0.1);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 240 5% 96%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image: 
+      linear-gradient(hsl(var(--grid-color)) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--grid-color)) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: -1px -1px;
+  }
+
+  .canvas-grid {
+    position: relative;
+  }
+
+  .canvas-grid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, hsl(var(--border)) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border)) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .canvas-line {
+    stroke: hsl(var(--primary));
+    stroke-width: 2;
+    fill: none;
+    opacity: 0.6;
+  }
+
+  .canvas-line-glow {
+    filter: drop-shadow(0 0 8px hsl(var(--primary) / 0.6));
+  }
+
+  .card-3d {
+    transform-style: preserve-3d;
+    box-shadow: var(--shadow-3d);
+    border: 2px solid hsl(var(--border));
+    position: relative;
+  }
+
+  .card-3d::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.1), transparent 50%, hsl(var(--primary) / 0.05));
+    z-index: -1;
+  }
+
+  .page-transition {
+    animation: fade-in 0.6s ease-out, slide-up 0.6s ease-out;
+  }
+}
